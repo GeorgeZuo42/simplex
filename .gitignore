@@ -1,7 +1,4 @@
 # 以#开头的行都是注释
 # 忽略指定文件
 .DS_Store
-3rd/
-3rd/openssl
-3rd/redis
-3rd/skynet
+#3rd/

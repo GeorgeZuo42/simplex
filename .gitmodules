@@ -10,3 +10,6 @@
 [submodule "3rd/luasocket"]
 	path = 3rd/luasocket
 	url = https://github.com/diegonehab/luasocket.git
+[submodule "3rd/md5"]
+	path = 3rd/md5
+	url = https://github.com/keplerproject/md5

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-
+using System.IO;
 public static class LuaConst
 {
-    public static string luaDir = Application.dataPath + "/Lua";                //lua逻辑代码目录
-    public static string toluaDir = Application.dataPath + "/ToLua/Lua";        //tolua lua文件目录
+    public static string luaDir = Path.GetFullPath(Application.dataPath + "/../../lua");                //lua逻辑代码目录
+    public static string toluaDir = Path.GetFullPath(Application.dataPath + "/../../lua/client");        //tolua lua文件目录
 
 #if UNITY_STANDALONE
     public static string osDir = "Win";

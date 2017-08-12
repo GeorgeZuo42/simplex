@@ -2,3 +2,4 @@
 # 忽略指定文件
 .DS_Store
 #3rd/
+project/Library/

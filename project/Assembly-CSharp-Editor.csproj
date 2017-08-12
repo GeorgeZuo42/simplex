@@ -61,8 +61,10 @@
      <Compile Include="Assets\ToLua\Editor\Extend\ToLua_UnityEngine_Input.cs" />
      <Compile Include="Assets\ToLua\Editor\Extend\ToLua_UnityEngine_Object.cs" />
      <Compile Include="Assets\ToLua\Editor\Extend\ToLua_UnityEngine_RectTransform.cs" />
+     <Compile Include="Assets\ToLua\Editor\LuaUtil.cs" />
      <Compile Include="Assets\ToLua\Editor\ToLuaExport.cs" />
      <Compile Include="Assets\ToLua\Editor\ToLuaMenu.cs" />
+     <Compile Include="Assets\ToLua\Editor\ToLuaMenuEx.cs" />
      <Compile Include="Assets\ToLua\Editor\ToLuaTree.cs" />
      <None Include="Assets\ToLua\readme.txt" />
  <Reference Include="UnityEditor.Advertisements">

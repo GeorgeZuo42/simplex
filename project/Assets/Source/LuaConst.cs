@@ -2,8 +2,8 @@
 
 public static class LuaConst
 {
-    public static string luaDir = Application.dataPath + "/Lua/client";                //lua逻辑代码目录
-    public static string toluaDir = Application.dataPath + "/Lua/client";        //tolua lua文件目录
+    public static string luaDir = Application.dataPath + "/LuaFramework/Lua";
+    public static string toluaDir = Application.dataPath + "/LuaFramework/ToLua/Lua";
 
 #if UNITY_STANDALONE
     public static string osDir = "Win";
@@ -26,5 +26,5 @@ public static class LuaConst
 #endif    
 
     public static bool openLuaSocket = true;            //是否打开Lua Socket库
-    public static bool openLuaDebug = false;         //是否连接lua调试器
+    public static bool openLuaDebugger = false;         //是否连接lua调试器
 }

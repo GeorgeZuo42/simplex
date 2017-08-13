@@ -927,7 +927,7 @@ namespace LuaInterface
 
             if (beLogMiss)
             {
-                Debug.LogFormat("Lua function {0} not exists", name);                
+               //Debug.LogFormat("Lua function {0} not exists", name);                
             }
 
             return null;

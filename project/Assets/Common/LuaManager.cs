@@ -28,8 +28,8 @@ namespace LuaFramework {
         }
         void OnSceneLoaded(Scene scene,LoadSceneMode mode)
         {
-            Debug.LogError(scene.name);
-            Debug.LogError(mode);
+            Debug.Log(scene.name);
+            Debug.Log(mode);
             LuaFunction func = lua.GetFunction("LoadSceneDone");
             func.Call();
             func.Dispose();

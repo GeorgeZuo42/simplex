@@ -2,6 +2,7 @@
 using System.Collections;
 using LuaInterface;
 using System.IO;
+using UnityEngine.SceneManagement;  
 namespace LuaFramework {
     public class LuaManager : MonoBehaviour {
         private LuaState lua;
@@ -19,8 +20,21 @@ namespace LuaFramework {
             LuaBinder.Bind(lua);
             LuaCoroutine.Register(lua, this);
             InitStart();
+            SceneManager.sceneLoaded += OnSceneLoaded; 
         }
-
+        void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded; 
+        }
+        void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+        {
+            Debug.LogError(scene.name);
+            Debug.LogError(mode);
+            LuaFunction func = lua.GetFunction("LoadSceneDone");
+            func.Call();
+            func.Dispose();
+            func = null;  
+        }
         public void InitStart() {
             InitLuaPath();
             InitLuaBundle();
@@ -130,5 +144,16 @@ namespace LuaFramework {
             lua = null;
             loader = null;
         }
+        string input2="";
+        void OnGUI()
+        {
+            input2 = GUI.TextArea(new Rect(0,0,200,200),input2);
+            if(GUI.Button(new Rect(200,200,100,100),"fuck"))
+            {
+                //Debug.LogError(input2);
+                lua.DoString(input2);
+            }
+        }
+        
     }
 }

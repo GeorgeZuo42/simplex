@@ -18,6 +18,11 @@ namespace LuaFramework {
             LuaManager.Instance.CallFunction(string.Concat(name,".", "Start"));
         }
 
+        protected void Update()
+        {
+            LuaManager.Instance.CallFunction(string.Concat(name, ".", "Update"));
+        }
+
         protected void OnClick() {
             LuaManager.Instance.CallFunction(string.Concat(name,".", "OnClick"));
         }

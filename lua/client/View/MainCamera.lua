@@ -25,5 +25,5 @@ end
 
 --设置相机位置--
 function MainCamera.SetPosition(Pos)
-	transform.position = Pos;
+	transform.position = Vector3(Pos.x,Pos.y,0);
 end

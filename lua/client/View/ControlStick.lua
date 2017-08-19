@@ -6,7 +6,7 @@ ControlStickCenter = nil;
 
 local isPress;
 local fingerId;
-local MoveDirect;
+local MoveDirect = Vector3.zero;
 local EffectClickDistance = 400;
 local ControlStickRound = 150;
 
@@ -25,7 +25,7 @@ function ControlStick.Awake(obj)
   
   isPress = false;
   fingerId = -1;
-  MoveDirect = Vector3.zero;
+  --MoveDirect = Vector3.zero;
 
 	print("Awake lua--->>"..gameObject.name);
 end
@@ -90,18 +90,26 @@ function ControlStick.Update()
     local touchPos = this.GetTouchPos();
     if(touchPos)
     then
+      --print(dump(touchPos)..dump(ControlStickCenter));
       MoveDirect = touchPos - ControlStickCenter;
       this.MoveStickBall(touchPos);
+      --print("MoveDirect in controlstcik"..dump(MoveDirect));
+      
+      if(MoveDirect ~= Vector2.zero)
+      then
+        PlayerManager.MovePlayerSelf(MoveDirect);
+      end
+      
     else
       print("ispress = "..tostring(isPress).."and touchPos = "..tostring(touchPos));
     end
   elseif(this.IsInTrrigerArea())
   then
-    print("IsInTrrigerArea = true");
+    --print("IsInTrrigerArea = true");
     local touchPos = this.GetTouchPos();
     if(touchPos)
     then
-      print("touchPos = true");
+      --print("touchPos = true");
       this.SetBasePosition(touchPos);
       --MoveDirect = touchPos - ControlStickCenter;
       --this.MoveStickBall(touchPos);
@@ -131,7 +139,7 @@ function ControlStick.IsInTrrigerArea()
         --and v.position.y >= ControlStickCenter.y + EffectClickDistance.y
       --)
     --then
-    print("Input.touchCount = "..Input.touchCount.."--");
+    --print("Input.touchCount = "..Input.touchCount.."--");
   for i = 0, Input.touchCount-1 do
     --print("Input.touches[i].position = "..dump(Input.touches[i].position).."----ControlStickCenter = "..dump(ControlStickCenter).."EffectClickDistance = "..EffectClickDistance);
     if(

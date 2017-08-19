@@ -1,4 +1,4 @@
-ControlStickManager = {};
+--[[ControlStickManager = {};
 local this = ControlStickManager;
 
 local isPress;
@@ -103,4 +103,4 @@ local function ControlStickManager.GetTouchPos(fingerId, ref pos)
     end
 
     return false;
-end
+end--]]

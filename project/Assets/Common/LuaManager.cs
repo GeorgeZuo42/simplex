@@ -77,10 +77,16 @@ namespace LuaFramework {
             lua.OpenLibs(LuaDLL.luaopen_lpeg);
             lua.OpenLibs(LuaDLL.luaopen_bit);
             lua.OpenLibs(LuaDLL.luaopen_socket_core);
-
+            OpenLuaSocket();
             this.OpenCJson();
         }
-
+        protected void OpenLuaSocket()
+        {
+            LuaConst.openLuaSocket = true;
+            lua.BeginPreLoad();
+            lua.RegFunction("socket.core",LuaDLL.luaopen_socket_core);
+            lua.EndPreLoad();
+        }
         /// <summary>
         /// 初始化Lua代码加载路径
         /// </summary>

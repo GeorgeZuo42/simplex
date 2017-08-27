@@ -12,7 +12,7 @@ port = 5678;
 
 c = assert (socket.connect (host, port));
 c:settimeout(0);
-socket.AddListener(c,this.CoroutineReceive);
+--socket.AddEvent(c,this.CoroutineReceive);
 
 
 local heartbeat_rsp_data = {

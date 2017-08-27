@@ -86,6 +86,7 @@
     <Compile Include="Assets\Common\ResourceManager.cs" />
     <Compile Include="Assets\Source\Generate\DelegateFactory.cs" />
     <Compile Include="Assets\Source\Generate\LuaBinder.cs" />
+    <Compile Include="Assets\Source\Generate\LuaFramework_LuaBehaviourWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_AnimationBlendModeWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_AnimationClipWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_AnimationStateWrap.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Assets\Source\Generate\UnityEngine_ColliderWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_ComponentWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_DebugWrap.cs" />
+    <Compile Include="Assets\Source\Generate\UnityEngine_EventSystems_UIBehaviourWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_GameObjectWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_InputWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_KeyCodeWrap.cs" />
@@ -133,11 +135,15 @@
     <Compile Include="Assets\Source\Generate\UnityEngine_SleepTimeoutWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_SpaceWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_SphereColliderWrap.cs" />
+    <Compile Include="Assets\Source\Generate\UnityEngine_TextMeshWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_Texture2DWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_TextureWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_TimeWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_TrackedReferenceWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_TransformWrap.cs" />
+    <Compile Include="Assets\Source\Generate\UnityEngine_UI_GraphicWrap.cs" />
+    <Compile Include="Assets\Source\Generate\UnityEngine_UI_MaskableGraphicWrap.cs" />
+    <Compile Include="Assets\Source\Generate\UnityEngine_UI_TextWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_WWWWrap.cs" />
     <Compile Include="Assets\Source\Generate\UnityEngine_WrapModeWrap.cs" />
     <Compile Include="Assets\Source\LuaConst.cs" />

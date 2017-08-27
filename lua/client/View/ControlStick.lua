@@ -31,7 +31,7 @@ function ControlStick.Awake(obj)
 end
 
 function ControlStick.Start()
-  
+  this.SetState(false);
 end
 
 --初始化摇杆--
@@ -179,4 +179,8 @@ function ControlStick.GetTouchPos()
   end
 
   return nil;
+end
+
+function ControlStick.SetState(state)
+  gameObject:SetActive(state);
 end

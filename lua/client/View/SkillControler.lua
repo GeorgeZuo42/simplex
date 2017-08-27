@@ -30,6 +30,7 @@ function SkillControler.Start()
   isPress = false;
   fingerId = -1;
   BulletDirect = Vector2.zero;
+  this.SetState(false);
 end
 
 --初始化摇杆--
@@ -138,4 +139,8 @@ function SkillControler.GetTouchPos()
   end
 
   return nil;
+end
+
+function SkillControler.SetState(state)
+  gameObject:SetActive(state);
 end

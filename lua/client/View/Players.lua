@@ -11,9 +11,12 @@ function Players.Start()
 end
 
 function Players.Update()
-  if(#OtherPlayers ~= 0) then
-    for k,v in ipairs(OtherPlayers) do
+  if(#AIPlayers ~= 0) then
+    
+    for k,v in ipairs(AIPlayers) do
       v:Move();
     end
+    
   end
+  
 end

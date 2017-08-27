@@ -5,18 +5,22 @@ ViewNames = {
   "MainCamera",
   "SkillControler",
   "Bullets",
-  "Players",
+
+  "MainUI",
 }
 
 LogicNames = {
 	--"ControlStickManager",	
   "PlayerManager",
   "StarManager",
+  "BattleManager",
 }
 
 AfterSceneLoad = {
    "View/Bullet",
    "View/Player",
+   "View/LoginUI",
+  "View/Players",
   }
 
 Colors = {

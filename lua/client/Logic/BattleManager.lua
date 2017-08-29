@@ -13,18 +13,25 @@ function BattleManager.SigleBattleInit()
 end
 
 function BattleManager.OnlineBattleInit(multiTable)
+  local init_star = false;
   ControlStick.SetState(true);
   SkillControler.SetState(true);
   --PlayerManager.CreatePlayerSelf(LoginTable.userName,1,100,Colors.red);
   print("multiTable = ",dump(multiTable));
   for k,v in ipairs(multiTable) do
     if(v.name == login_req.message.user_name) then
-      PlayerManager.CreatePlayerSelf(v.name,1,100,Colors.red);
+      if(PlayerSelf == nil) then
+        PlayerManager.CreatePlayerSelf(v.name,1,100,Colors.red,Vector3(v.pos_x,v.pos_y,0));
+        init_star = true;
+      end
     else
-      PlayerManager.CreateOnlinePlayer(v.name,k+1,100,Colors.red);
+      PlayerManager.CreateOnlinePlayer(v.name,k+1,100,Colors.red,Vector3(v.pos_x,v.pos_y,0));
     end
   end
   
-  StarManager.InitStars();
+  if(init_star) then
+    StarManager.InitStars();
+  end
+
 end
 

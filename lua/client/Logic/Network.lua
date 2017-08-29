@@ -7,7 +7,7 @@ local socket = require("socket")
 local ReceiveStr;
 local ReceiveData;
 
-host = "192.168.31.249 ";
+host = "119.23.251.90";
 port = 5678;
 
 c = assert (socket.connect (host, port));
@@ -20,14 +20,18 @@ local heartbeat_rsp_data = {
 }
 
 local self_pos_data = {
-  type = "self_pos"
+  type = "move"
   }
 
 local heartbeat_rsp_str = json.encode(heartbeat_rsp_data);
 
+function Network.Send(str)
+  c:send(str.."\n");
+end
+
 
 function Network.CoroutineReceive()
-  print("Network.CoroutineReceive()");
+  --print("Network.CoroutineReceive()");
   ReceiveStr = c:receive();
   
   if(ReceiveStr ~= nil) then
@@ -38,16 +42,18 @@ function Network.CoroutineReceive()
     elseif(ReceiveData.type == "login") then
       this.LoginRspHandler();
     elseif(ReceiveData.type == "aoi_enter") then
+      print("ReceiveData.type == aoi_enter");
       this.MatchRspHandler();
-    elseif(ReceiveData.type == "move") then
+    elseif(ReceiveData.type == "aoi_sync") then
+      print("ReceiveData.type = aoi_sync");
       this.MoveRspHandler();
     else
       print("Receive str = "..ReceiveStr);
     end
   end
   
-  coroutine.wait(1);
-  print("receive again");
+  coroutine.wait(0.2);
+  --print("receive again");
   this.CoroutineReceive();
 end
 
@@ -60,7 +66,7 @@ end
 
 
 function Network.Heartbeat()
-  c:send(heartbeat_rsp_str);
+  this.Send(heartbeat_rsp_str);
 end
 
 function Network.LoginRspHandler()
@@ -89,7 +95,7 @@ function Network.MoveRspHandler()
 end
 
 function Network.Login(login_req_data)
-  c:send(json.encode(login_req_data));
+  this.Send(json.encode(login_req_data));
 
   --[[local s, status, partial = coroutine.start(c:receive());
     if(s ~= nil) then
@@ -110,7 +116,7 @@ function Network.Login(login_req_data)
   end
 
 function Network.AOIEnter(single_match_req_data)
-  c:send(json.encode(single_match_req_data));
+  this.Send(json.encode(single_match_req_data));
   
 --[[
     local s, status, partial = coroutine.start(c:receive());
@@ -135,7 +141,7 @@ function Network.SendSelfPos()
   self_pos_data.message = {
     pos = PlayerSelf.obj.transform.position;
     }
-  c:send(json.encode(self_pos_data));
+  this.Send(json.encode(self_pos_data));
 end
 --[[
 function Network.HeartBeat()

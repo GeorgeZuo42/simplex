@@ -7,7 +7,7 @@ PlayersParent = UnityEngine.GameObject.Find("Players").transform;
 
 
 --创建玩家--
-function Player:New(playerName,playerId,playerSize,playerColor)
+function Player:New(playerName,playerId,playerSize,playerColor,pos)
   local temp = {}
   setmetatable(temp,Player)
   temp.player_name = playerName;
@@ -32,7 +32,8 @@ function Player:New(playerName,playerId,playerSize,playerColor)
   --print('Afk_______'..temp.name.text);
   --GameObject.SetActive(temp.playerArrow,false)
   temp.playerArrow:SetActive(false);
-  temp.obj.transform.position = this.RandomBorn();
+  print("pos in player new is = "..dump(pos));
+  temp.obj.transform.position = pos;
   temp.alive = true;
 
   return temp;

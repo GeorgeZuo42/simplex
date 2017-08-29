@@ -16,11 +16,11 @@ AllPlayers = {};
 PlayerSelf= nil;
 --local SelfBall = nil;d
 
-function PlayerManager.CreatePlayerSelf(name,id,size,color)
+function PlayerManager.CreatePlayerSelf(name,id,size,color,pos)
   print("CreatePlayer..>>>>>>>"..name);
   local k,v;
   k = name;
-  PlayerSelf = Player:New(name,id,size,color);
+  PlayerSelf = Player:New(name,id,size,color,pos);
   
   this.EatStar(PlayerSelf);
   MainCamera.SetPosition(PlayerSelf.obj.transform.position);
@@ -29,17 +29,19 @@ function PlayerManager.CreatePlayerSelf(name,id,size,color)
   --SelfBall = PlayerSelf.obj.transform:Find("Ball");
   
   table.insert(AllPlayers,PlayerSelf);
-  this.SendSelfPos();
+  --this.SendSelfPos();
+  ss = coroutine.create(this.SendSelfPos);
+  coroutine.resume(ss);
   --SelfTimer = Timer.New(this.SendSelfPos(),0.1);
   --SelfTimer:Start();
   --print("Player.name = "..v.name..",id ="..v.playerId..",size = "..v.playerSize..",color= "..v.playerColor);
 end
 
-function PlayerManager.CreateAiPlayer(name,id,size,color)
+function PlayerManager.CreateAiPlayer(name,id,size,color,pos)
   print("CreatePlayer..>>>>>>>"..name);
   local k,v;
   k = name;
-  v = Player:New(name,id,size,color);
+  v = Player:New(name,id,size,color,pos);
   this.EatStar(v);
   table.insert(AIPlayers,v);
   table.insert(AllPlayers,v);
@@ -47,13 +49,14 @@ function PlayerManager.CreateAiPlayer(name,id,size,color)
   --print("Player.name = "..v.name..",id ="..v.playerId..",size = "..v.playerSize..",color= "..v.playerColor);
 end
 
-function PlayerManager.CreateOnlinePlayer(name,id,size,color)
+function PlayerManager.CreateOnlinePlayer(name,id,size,color,pos)
   print("CreatePlayer..>>>>>>>"..name);
   local k,v;
   k = name;
-  v = Player:New(name,id,size,color);
+  print("pos in PlayerManager.CreateOnlinePlayer is = "..dump(pos));
+  v = Player:New(name,id,size,color,pos);
   this.EatStar(v);
-  table.insert(OnlinePlayers,v);
+  table.insert(OtherPlayers,v);
   table.insert(AllPlayers,v);
   --this.PlayerAutoMove(v);
   --print("Player.name = "..v.name..",id ="..v.playerId..",size = "..v.playerSize..",color= "..v.playerColor);
@@ -129,14 +132,18 @@ function PlayerManager.ChangeDirect(player)
 end
 
 function PlayerManager.SetOtherPlayerPos(pos_data)
+  local new_player = false;
   for k1,v1 in ipairs(pos_data) do
+    new_player = true;
     for k,v in ipairs(OtherPlayers) do
-      if(v.player_name == v1.player_name) then
-        v.obj.transform.position = v1.position;
+      if(v.player_name == v1.name) then
+        v.obj.transform.position = Vector3(v1.x,v1.y,0);
+        new_player = false;
         break;
-      else
-        print("there is not have player "..v1.player_name.." in otherPlayers.");
       end
+    end
+    if(new_player) then
+      print("there is not have player "..v1.name.." in otherPlayers.");
     end
   end
 end
@@ -172,8 +179,8 @@ end
 
 function PlayerManager.SendSelfPos()
   if(PlayerSelf.alive) then
-    coroutine.start(Network.SendSelfPos);
-    coroutine.wait(100);
+    Network.SendSelfPos();
+    coroutine.wait(0.2);
     this.SendSelfPos();
   end
 end
